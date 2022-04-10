@@ -11,7 +11,7 @@
     <header class="header">
       <img src="img/Logo_img.png" width="100%" />
     </header>
-    <div class="wrapper">
+    <main class="wrapper">
       <section class="main-section">
         <article class="catalogue">
           <ul class="drink-list">
@@ -66,55 +66,78 @@
           </ul>
         </article>
         <article class="calculator">
-          <article>잔액: <span>1,000원</span></article>
-          <button>거스름돈 반환</button>
-          <form><input type="number" min="1" /><button>입금</button></form>
+          <div class="calculator__first-row">
+            <article class="balance">
+              <span>잔액: </span><span>1,000원</span>
+            </article>
+            <button class="change-btn">거스름돈 반환</button>
+          </div>
+          <div class="calculator__second-row">
+            <input
+              class="deposit"
+              type="number"
+              min="1"
+              placeholder="입금액 입력"
+            /><button>입금</button>
+          </div>
         </article>
         <article class="shopping-list">
-          <ul>
-            <li>
-              <img src="img/Original_Cola.png" />Original_Cola<span>1</span>
+          <ul class="will-get-list">
+            <li class="will-get-item">
+              <img src="img/Original_Cola.png" />Original_Cola<span
+                class="quantity"
+                >1</span
+              >
             </li>
-            <li><img src="img/Green_Cola.png" />Green_Cola<span>2</span></li>
+            <li class="will-get-item">
+              <img src="img/Green_Cola.png" />Green_Cola<span class="quantity"
+                >2</span
+              >
+            </li>
           </ul>
+          <button class="get-btn">획득</button>
         </article>
-        <button>획득</button>
       </section>
       <div class="right-wrapper">
-        <article class="balance">
-          <div class="balance-content">소지금: <span>25,000원</span></div>
+        <article class="current-money-wrapper">
+          <div class="current-money">
+            <span>소지금: </span><span>25,000원</span>
+          </div>
         </article>
         <section class="total-section">
-          <article class="catalogue">
-            <ul class="drink-list">
-              <li class="drink-item">
-                <button>
-                  <img src="img/Original_Cola.png" />Original_Cola<span
-                    class="drink-price"
-                    >1000원</span
-                  >
-                </button>
+          <h2 class="total-section__header">획득한 음료</h2>
+          <article class="got-list-wrapper">
+            <ul class="got-list">
+              <li class="got-item">
+                <img src="img/Original_Cola.png" />Original_Cola<span
+                  class="quantity"
+                  >1</span
+                >
               </li>
-              <li class="drink-item">
-                <button>
-                  <img src="img/Violet_Cola.png" />Violet_Cola<span
-                    class="drink-price"
-                    >1000원</span
-                  >
-                </button>
+              <li class="got-item">
+                <img src="img/Green_Cola.png" />Green_Cola<span class="quantity"
+                  >2</span
+                >
               </li>
-              <li class="drink-item">
-                <button>
-                  <img src="img/Yellow_Cola.png" />Yellow_Cola<span
-                    class="drink-price"
-                    >1000원</span
-                  >
-                </button>
+              <li class="got-item">
+                <img src="img/Orange_Cola.png" />Orange_Cola<span
+                  class="quantity"
+                  >1</span
+                >
+              </li>
+              <li class="got-item">
+                <img src="img/Violet_Cola.png" />Violet_Cola<span
+                  class="quantity"
+                  >5</span
+                >
               </li>
             </ul>
           </article>
+          <span class="total-price-wrapper"
+            >총 금액 : <span class="total-price">9,000원</span></span
+          >
         </section>
       </div>
-    </div>
+    </main>
   </body>
 </html>

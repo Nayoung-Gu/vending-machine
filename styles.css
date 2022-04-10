@@ -3,6 +3,8 @@
 :root {
   --main-color: #6327fe;
   --main-bg-color: #eae8fe;
+  --main-border-radius: 5px;
+  --main-box-shadow: 0 0 10px lightgrey;
 }
 
 * {
@@ -12,7 +14,6 @@
 body {
   background-color: var(--main-bg-color);
   height: 100vh;
-
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
@@ -21,6 +22,13 @@ button {
   background-color: transparent;
   border: none;
   cursor: pointer;
+  box-shadow: var(--main-box-shadow);
+}
+
+input {
+  border: none;
+  border-radius: var(--main-border-radius);
+  box-shadow: var(--main-box-shadow);
 }
 
 .header {
@@ -29,33 +37,38 @@ button {
 }
 
 .wrapper {
-  width: 90%;
-  height: 100vh;
+  width: 80%;
   margin: 0 auto;
   display: flex;
   justify-content: space-around;
-  background-color: salmon;
 }
 
 .main-section {
   width: 50%;
   padding: 20px;
+  margin-right: 50px;
+  background-color: white;
 }
 
 .drink-list {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
 .drink-list .drink-item {
-  width: 150px;
-  height: 200px;
+  width: 120px;
+  height: 170px;
   margin: 3px;
   border: 5px solid var(--main-color);
   border-radius: 20px;
   padding-top: 5px;
   box-sizing: border-box;
+}
+
+.drink-item button {
+  box-shadow: none;
 }
 
 .drink-item img {
@@ -75,22 +88,133 @@ button {
   border-radius: 20px;
 }
 
+.calculator__first-row,
+.calculator__second-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.balance,
+.deposit {
+  width: 70%;
+  height: 40px;
+  padding: 0 10px;
+  margin: 0 20px 0 0;
+  background-color: white;
+}
+
+.balance {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--main-bg-color);
+  border-radius: var(--main-border-radius);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.calculator button {
+  font-size: 14px;
+  font-weight: 600;
+  background-color: white;
+  border-radius: 5px;
+  width: 30%;
+  height: 40px;
+}
+
+.shopping-list {
+  display: flex;
+  height: 120px;
+}
+
+.will-get-list {
+  background-color: var(--main-bg-color);
+  width: 75%;
+  overflow: hidden scroll;
+  margin-right: 10px;
+}
+
+.will-get-item,
+.got-item {
+  background-color: white;
+  width: 90%;
+  margin: 10px auto;
+  border-radius: var(--main-border-radius);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.will-get-item .quantity,
+.got-item .quantity {
+  position: absolute;
+  font-weight: 600;
+  right: 5px;
+  border: 2px solid lightgray;
+  border-radius: var(--main-border-radius);
+  padding: 10px;
+  text-align: center;
+  width: 40px;
+}
+
+.will-get-list .will-get-item img,
+.got-list .got-item img {
+  width: 20px;
+  height: 40px;
+  margin: 10px;
+}
+
+.shopping-list .get-btn {
+  width: 25%;
+  background-color: var(--main-color);
+  border-radius: var(--main-border-radius);
+  color: white;
+  font-weight: 600;
+}
+
 .right-wrapper {
   width: 50%;
 }
 
-.balance {
+.current-money-wrapper {
   background-color: white;
   padding: 20px;
   box-sizing: border-box;
+  margin-bottom: 20px;
 }
 
-.balance-content {
+.current-money {
   background-color: var(--main-bg-color);
   padding: 15px;
   border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
 }
 
 .total-section {
-  background-color: yellowgreen;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.total-section .total-section__header {
+  font-weight: 600;
+  margin: 20px 0;
+}
+
+.got-list-wrapper {
+  background-color: var(--main-bg-color);
+  width: 80%;
+  border: 2px solid lightgray;
+  border-radius: var(--main-border-radius);
+}
+
+.total-price-wrapper {
+  margin-top: 20px;
+  font-weight: 600;
 }
