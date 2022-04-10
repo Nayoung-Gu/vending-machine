@@ -4,7 +4,10 @@
   --main-color: #6327fe;
   --main-bg-color: #eae8fe;
   --main-border-radius: 5px;
-  --main-box-shadow: 0 0 10px lightgrey;
+  --main-box-shadow: 0 0 3px 1px gray;
+  --main-border: 2px solid lightgray;
+  --non-selected-border: 5px solid rgb(224, 224, 224);
+  --selected-border: 5px solid var(--main-color);
 }
 
 * {
@@ -13,7 +16,7 @@
 
 body {
   background-color: var(--main-bg-color);
-  height: 100vh;
+  height: 150vh;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
@@ -32,15 +35,16 @@ input {
 }
 
 .header {
-  width: 30%;
+  width: 25%;
   margin: 0 auto 50px;
 }
 
 .wrapper {
-  width: 80%;
+  width: 70vw;
   margin: 0 auto;
   display: flex;
   justify-content: space-around;
+  margin-bottom: 100px;
 }
 
 .main-section {
@@ -48,6 +52,7 @@ input {
   padding: 20px;
   margin-right: 50px;
   background-color: white;
+  padding-bottom: 30px;
 }
 
 .drink-list {
@@ -61,10 +66,21 @@ input {
   width: 120px;
   height: 170px;
   margin: 3px;
-  border: 5px solid var(--main-color);
+  border: var(--non-selected-border);
   border-radius: 20px;
   padding-top: 5px;
   box-sizing: border-box;
+}
+
+.drink-item.selected {
+  border: var(--selected-border);
+}
+
+.sold-out-item {
+  background-image: url(img/Sold-out.png);
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 
 .drink-item button {
@@ -134,8 +150,27 @@ input {
   width: 75%;
   overflow: hidden scroll;
   margin-right: 10px;
+  border: var(--main-border);
+  border-radius: var(--main-border-radius);
 }
 
+.will-get-list::-webkit-scrollbar,
+.got-list-wrapper::-webkit-scrollbar {
+  width: 10px;
+}
+
+.will-get-list::-webkit-scrollbar-thumb,
+.got-list-wrapper::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 10px;
+  background-clip: padding-box;
+  border: 2px solid transparent;
+}
+.will-get-list::-webkit-scrollbar-track,
+.got-list-wrapper::-webkit-scrollbar-track {
+  background-color: var(--main-bg-color);
+  border-radius: 10px;
+}
 .will-get-item,
 .got-item {
   background-color: white;
@@ -153,7 +188,7 @@ input {
   position: absolute;
   font-weight: 600;
   right: 5px;
-  border: 2px solid lightgray;
+  border: var(--main-border);
   border-radius: var(--main-border-radius);
   padding: 10px;
   text-align: center;
@@ -200,6 +235,9 @@ input {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 10px;
+  height: 83.5%;
+  position: relative;
 }
 
 .total-section .total-section__header {
@@ -210,11 +248,18 @@ input {
 .got-list-wrapper {
   background-color: var(--main-bg-color);
   width: 80%;
-  border: 2px solid lightgray;
+  border: var(--main-border);
   border-radius: var(--main-border-radius);
+  height: 80%;
 }
 
 .total-price-wrapper {
   margin-top: 20px;
   font-weight: 600;
+  display: block;
+  text-align: right;
+  background-color: white;
+  position: absolute;
+  right: 10%;
+  bottom: 5%;
 }
