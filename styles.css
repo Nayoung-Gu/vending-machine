@@ -169,7 +169,7 @@ input {
   background-color: var(--main-bg-color);
   height: 134px;
   width: 200px;
-  overflow: hidden scroll;
+  overflow: hidden;
   margin-right: 35px;
   border: var(--main-border);
   border-radius: var(--main-border-radius);
