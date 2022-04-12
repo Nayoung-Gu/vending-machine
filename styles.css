@@ -162,7 +162,7 @@ input {
 
 .shopping-list {
   display: flex;
-  padding: 0 15px;
+  padding-left: 7px;
 }
 
 .will-get-list {
@@ -170,7 +170,7 @@ input {
   height: 134px;
   width: 200px;
   overflow: hidden;
-  margin-right: 35px;
+  margin-right: 15px;
   border: var(--main-border);
   border-radius: var(--main-border-radius);
 }
@@ -228,8 +228,7 @@ input {
 }
 
 .shopping-list .get-btn {
-  width: 94px;
-
+  width: 95px;
   background-color: var(--main-color);
   border-radius: var(--main-border-radius);
   color: white;
