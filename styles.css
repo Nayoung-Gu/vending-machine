@@ -1,13 +1,14 @@
 @import "reset.css";
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@300&family=Noto+Sans+KR:wght@400;500;700&display=swap");
 
 :root {
   --main-color: #6327fe;
   --main-bg-color: #eae8fe;
-  --main-border-radius: 5px;
-  --main-box-shadow: 0 0 3px 1px gray;
+  --main-border-radius: 10px;
+  --main-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
   --main-border: 2px solid lightgray;
-  --non-selected-border: 5px solid rgb(224, 224, 224);
-  --selected-border: 5px solid var(--main-color);
+  --non-selected-border: 3px solid rgb(224, 224, 224);
+  --selected-border: 3px solid var(--main-color);
 }
 
 * {
@@ -16,9 +17,7 @@
 
 body {
   background-color: var(--main-bg-color);
-  height: 150vh;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  height: 120vh;
 }
 
 button {
@@ -31,7 +30,6 @@ button {
 input {
   border: none;
   border-radius: var(--main-border-radius);
-  box-shadow: var(--main-box-shadow);
 }
 
 .header {
@@ -40,19 +38,16 @@ input {
 }
 
 .wrapper {
-  width: 70vw;
   margin: 0 auto;
   display: flex;
-  justify-content: space-around;
-  margin-bottom: 100px;
+  justify-content: center;
 }
 
 .main-section {
-  width: 50%;
+  width: 360px;
   padding: 20px;
-  margin-right: 50px;
   background-color: white;
-  padding-bottom: 30px;
+  margin-right: 30px;
 }
 
 .drink-list {
@@ -63,13 +58,24 @@ input {
 }
 
 .drink-list .drink-item {
-  width: 120px;
-  height: 170px;
-  margin: 3px;
+  width: 94px;
+  height: 130px;
   border: var(--non-selected-border);
   border-radius: 20px;
-  padding-top: 5px;
   box-sizing: border-box;
+  margin: 1px;
+  box-shadow: var(--main-box-shadow);
+}
+
+.drink-list .drink-name {
+  display: block;
+  width: 73px;
+  height: 10px;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 9px;
+  line-height: 13px;
+  font-weight: 400;
+  margin: 3px 0 5px;
 }
 
 .drink-item.selected {
@@ -79,8 +85,8 @@ input {
 .sold-out-item {
   background-image: url(img/Sold-out.png);
   background-position: center;
-  background-size: 100%;
   background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 .drink-item button {
@@ -88,20 +94,23 @@ input {
 }
 
 .drink-item img {
-  width: 45%;
-  height: 45%;
+  width: 36px;
+  height: 65px;
   display: block;
   margin: 10px auto 5px;
 }
 
 .drink-item .drink-price {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: white;
   background-color: var(--main-color);
-  width: 80%;
-  margin: 5px auto;
-  padding: 5px;
-  border-radius: 20px;
+  width: 70px;
+  height: 22px;
+  border-radius: 50px;
+  font-size: 11px;
+  margin: 0 auto;
 }
 
 .calculator__first-row,
@@ -110,46 +119,58 @@ input {
   justify-content: space-around;
   align-items: center;
   margin-bottom: 15px;
+  width: 100%;
 }
 
 .balance,
 .deposit {
-  width: 70%;
-  height: 40px;
+  width: 200px;
+  height: 33px;
   padding: 0 10px;
-  margin: 0 20px 0 0;
   background-color: white;
+}
+
+.deposit {
+  border: var(--main-border);
+}
+
+.deposit:focus {
+  outline: none;
 }
 
 .balance {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 200px;
+  height: 33px;
   background-color: var(--main-bg-color);
   border-radius: var(--main-border-radius);
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
+  font-family: "Noto Sans KR";
 }
 
 .calculator button {
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 500;
   background-color: white;
   border-radius: 5px;
-  width: 30%;
-  height: 40px;
+  width: 94px;
+  height: 33px;
 }
 
 .shopping-list {
   display: flex;
-  height: 120px;
+  padding: 0 15px;
 }
 
 .will-get-list {
   background-color: var(--main-bg-color);
-  width: 75%;
+  height: 134px;
+  width: 200px;
   overflow: hidden scroll;
-  margin-right: 10px;
+  margin-right: 35px;
   border: var(--main-border);
   border-radius: var(--main-border-radius);
 }
@@ -174,22 +195,26 @@ input {
 .will-get-item,
 .got-item {
   background-color: white;
-  width: 90%;
+  width: 170px;
+  height: 46px;
   margin: 10px auto;
   border-radius: var(--main-border-radius);
   box-sizing: border-box;
   display: flex;
   align-items: center;
   position: relative;
+  font-size: 9px;
+  font-weight: 500;
 }
 
 .will-get-item .quantity,
 .got-item .quantity {
   position: absolute;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 500;
   right: 5px;
   border: var(--main-border);
-  border-radius: var(--main-border-radius);
+  border-radius: 5px;
   padding: 10px;
   text-align: center;
   width: 40px;
@@ -197,37 +222,40 @@ input {
 
 .will-get-list .will-get-item img,
 .got-list .got-item img {
-  width: 20px;
-  height: 40px;
+  width: 18px;
+  height: 33px;
   margin: 10px;
 }
 
 .shopping-list .get-btn {
-  width: 25%;
+  width: 94px;
+
   background-color: var(--main-color);
   border-radius: var(--main-border-radius);
   color: white;
-  font-weight: 600;
-}
-
-.right-wrapper {
-  width: 50%;
+  font-weight: 700;
 }
 
 .current-money-wrapper {
+  width: 360px;
+  height: 50px;
   background-color: white;
-  padding: 20px;
+  padding: 10px;
   box-sizing: border-box;
   margin-bottom: 20px;
+  box-sizing: border-box;
 }
 
 .current-money {
   background-color: var(--main-bg-color);
-  padding: 15px;
+  padding: 10px;
   border-radius: 5px;
   display: flex;
   justify-content: space-between;
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 14px;
+  font-family: "Noto Sans KR";
+  height: 32px;
 }
 
 .total-section {
@@ -235,31 +263,39 @@ input {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 10px;
-  height: 83.5%;
+  height: 87%;
   position: relative;
 }
 
 .total-section .total-section__header {
-  font-weight: 600;
+  font-family: "Noto Sans KR";
+  font-size: 14px;
+  font-weight: 700;
   margin: 20px 0;
 }
 
 .got-list-wrapper {
   background-color: var(--main-bg-color);
-  width: 80%;
+  width: 306px;
+  height: 364px;
   border: var(--main-border);
   border-radius: var(--main-border-radius);
-  height: 80%;
 }
 
 .total-price-wrapper {
+  font-family: "Noto Sans KR";
+  font-size: 12px;
   margin-top: 20px;
-  font-weight: 600;
+  font-weight: 500;
   display: block;
   text-align: right;
   background-color: white;
   position: absolute;
   right: 10%;
   bottom: 5%;
+}
+
+.got-item {
+  width: 276px;
+  height: 46px;
 }
