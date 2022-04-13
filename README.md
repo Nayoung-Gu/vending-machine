@@ -9,6 +9,7 @@ html, css로 벤딩머신 구현하기 (js는 추후에 추가 예정)
 - display: flex (justify-content, align-items)
 - :root 
 <br>
+
 ## 이슈
 
 - 품절 상품 위에 품절 로고 띄우기 (li에 background-color 덮고 z-index 설정해봤는데 아직 해결 못함)
