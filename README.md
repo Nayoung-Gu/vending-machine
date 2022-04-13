@@ -4,6 +4,7 @@
 
 html, css로 벤딩머신 구현하기 (js는 추후에 추가 예정)
 <br>
+
 ## 주요 속성
 
 - display: flex (justify-content, align-items)
