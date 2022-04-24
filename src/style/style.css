@@ -1,0 +1,254 @@
+@charset "utf-8";
+
+:root {
+  --main-color: #6327fe;
+  --main-bg-color: #eae8fe;
+  --main-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+}
+
+body {
+  background-color: var(--main-bg-color);
+  font-family: "Noto Sans KR";
+  padding-bottom: 100px;
+}
+
+.header {
+  width: 100%;
+  height: 164px;
+  position: absolute;
+  top: 0;
+  background: url("../images/Logo_img.png") no-repeat center/386px 164px;
+}
+
+.cont-main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+}
+
+.cont-main .vending-machine,
+.cont-main .my-page {
+  width: 360px;
+  margin-top: 230px;
+}
+
+.cont-main .vending-machine {
+  background-color: #fff;
+  padding: 31px 27px 28px;
+  box-sizing: border-box;
+}
+
+.vending-machine .drink-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  text-align: center;
+}
+
+.drink-list li {
+  box-shadow: var(--main-box-shadow);
+  border-radius: 10px;
+  width: 94px;
+  padding: 11px 0 9px;
+  position: relative;
+}
+
+.drink-list li:active {
+  content: "";
+  display: block;
+  outline: 3px solid var(--main-color);
+}
+
+.drink-list li.sold-out {
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.drink-list li.sold-out::after {
+  content: "";
+  display: block;
+  background: url("../images/sold-out.png") no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+.drink-list button img {
+  width: 36px;
+}
+
+.drink-list button strong {
+  display: block;
+  margin: 3px 0 5px;
+  font-weight: 500;
+  font-size: 9px;
+  line-height: 13px;
+}
+
+.drink-list button span {
+  display: inline-block;
+  background-color: var(--main-color);
+  border-radius: 50px;
+  padding: 5px 15px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.vending-machine .cont-buy {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 8px;
+  gap: 12px;
+}
+
+.cont-buy .balance {
+  grid-column: 1 / span 2;
+  background-color: var(--main-bg-color);
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  box-sizing: border-box;
+  padding: 7px 10px;
+}
+
+.balance .txt-balance {
+  float: right;
+}
+
+.cont-buy .input-deposit {
+  grid-column: 1 / span 2;
+  border: 1px solid #bdbdbd;
+  padding: 6px;
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 19px;
+  color: #bdbdbd;
+}
+
+.cont-buy .btn-return,
+.cont-buy .btn-deposit {
+  grid-column: 3 / 4;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 19px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+}
+
+.cont-buy .list-staged {
+  grid-column: 1 / span 2;
+  background-color: var(--main-bg-color);
+  padding: 12px;
+  overflow-y: scroll;
+}
+
+.list-staged li,
+.list-myItems li {
+  background-color: #fff;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.list-staged li + li,
+.list-myItems li + li {
+  margin-top: 6px;
+}
+
+.list-staged li img,
+.list-myItems li img {
+  margin: 6px 10px;
+}
+
+.list-staged strong,
+.list-myItems strong {
+  font-weight: 500;
+  font-size: 9px;
+}
+
+.list-staged span,
+.list-myItems span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #bdbdbd;
+  box-sizing: border-box;
+  border-radius: 5px;
+  width: 30px;
+  height: 30px;
+  margin-left: auto;
+  margin-right: 8px;
+}
+
+.cont-buy .btn-get {
+  grid-column: 3 / 4;
+}
+
+.list-staged li img,
+.list-myItems li img {
+  width: 18px;
+}
+
+.btn-get {
+  background-color: var(--main-color);
+  border-radius: 5px;
+  color: white;
+  grid-column: 3 / 4;
+}
+
+.cont-myMoney {
+  background-color: #fff;
+  padding: 9px 27px;
+  margin-bottom: 20px;
+}
+
+.cont-myMoney .money {
+  background-color: var(--main-bg-color);
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding: 6px 10px;
+  font-weight: 600;
+}
+
+.money .txt-money {
+  float: right;
+}
+
+.cont-myItems {
+  background-color: #fff;
+  padding: 30px;
+}
+
+.header__myitems {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  margin-bottom: 13px;
+}
+
+.list-myItems {
+  background-color: var(--main-bg-color);
+  width: 306px;
+  height: 400px;
+  overflow-y: scroll;
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+.txt-total {
+  display: block;
+  text-align: right;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 17px;
+  margin-top: 6px;
+}
