@@ -2,7 +2,7 @@
 
 ## 개요
 
-html, css로 벤딩머신 구현하기 (js는 추후에 추가 예정)
+HTML, CSS로 벤딩머신 구현하기 (JavaScript는 추후에 추가 예정)
 <br>
 <br>
 
