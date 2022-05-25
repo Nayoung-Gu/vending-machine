@@ -151,11 +151,15 @@ body {
 .cont-buy .input-deposit {
   grid-column: 1 / span 2;
   border: 1px solid #bdbdbd;
-  padding: 6px;
+  padding: 8px;
   border-radius: 5px;
   font-weight: 500;
   font-size: 13px;
   line-height: 19px;
+  color: #111;
+}
+
+.cont-buy .input-deposit::placeholder {
   color: #bdbdbd;
 }
 
