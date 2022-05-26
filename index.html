@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="src/style/style.css" />
     <title>Vending Machine</title>
   </head>
-  <body> 
+  <body>
     <header class="header">
       <h1 class="tit-header hidden">콜라콜라</h1>
     </header>
@@ -60,11 +60,13 @@
         </ul>
         <section class="cont-buy">
           <h3 class="hidden">구입 관련 정보</h3>
-          <div class="balance">
-            잔액: <span class="txt-balance">1,000 원</span>
-          </div>
+          <div class="balance">잔액: <span class="txt-balance">0 원</span></div>
           <button class="btn-return">거스름돈 반환</button>
-          <input type="text" placeholder="입금액 입력" class="input-deposit" />
+          <input
+            type="number"
+            placeholder="입금액 입력"
+            class="input-deposit"
+          />
           <button class="btn-deposit">입금</button>
           <ul class="list-staged">
             <li>

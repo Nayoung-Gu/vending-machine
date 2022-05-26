@@ -13,3 +13,27 @@
 
 // 4. 총금액 계산
 // 획득한 음료의 총금액을 구해 하단에 표시
+
+const buyCont = document.querySelector(".cont-buy");
+const returnBtn = buyCont.querySelector(".btn-return");
+const depositInput = buyCont.querySelector(".input-deposit");
+const depositBtn = buyCont.querySelector(".btn-deposit");
+const balance = buyCont.querySelector(".txt-balance");
+const myMoney = document.querySelector(".txt-money");
+
+function getChange() {
+  myMoney.textContent =
+    parseInt(balance.innerText) + parseInt(myMoney.innerText) + " 원";
+  balance.textContent = "0 원";
+}
+
+function deposit() {
+  if (depositInput.value) {
+    balance.textContent =
+      parseInt(balance.innerText) + parseInt(depositInput.value) + " 원";
+    depositInput.value = "";
+  }
+}
+
+returnBtn.addEventListener("click", getChange);
+depositBtn.addEventListener("click", deposit);
