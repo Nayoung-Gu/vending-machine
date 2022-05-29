@@ -7,7 +7,7 @@
 // 3. 음료 구매
 // [x] 3-1. 음료 버튼 누르면 카트로 이동
 // [ ] 3-2. 카트의 음료 버튼을 누르면 하나씩 수량 감소
-// [ ] 3-3. 음료 종류당 하나의 li에 카운트 누적
+// [x] 3-3. 음료 종류당 하나의 li에 카운트 누적
 // [x] 3-4. '획득' 버튼 누르면 카트에 담긴 음료가 획득한 음료칸으로 이동
 // [x] 3-5. (실패) 카트에 담긴 금액이 잔액을 초과하면 alert
 // [x] 3-6. (성공) 기존 잔액 - 구매금액
@@ -18,24 +18,28 @@
 // 5. 금액 단위 표시
 // [ ] 세 자리 단위로 콤마 생성
 
-const drinkCont = document.querySelectorAll(".drink-list li");
-const buyCont = document.querySelector(".cont-buy");
+const vendingMachine = document.querySelector(".vending-machine");
+const drinkCont = vendingMachine.querySelectorAll(".drink-list li");
+const buyCont = vendingMachine.querySelector(".cont-buy");
 const returnBtn = buyCont.querySelector(".btn-return");
 const depositInput = buyCont.querySelector(".input-deposit");
 const depositBtn = buyCont.querySelector(".btn-deposit");
 const balance = buyCont.querySelector(".txt-balance");
-const myMoney = document.querySelector(".txt-money");
-const getBtn = document.querySelector(".btn-get");
+const getBtn = buyCont.querySelector(".btn-get");
+const selectedColaCont = buyCont.querySelector(".list-staged");
 
-const selectedColaCont = document.querySelector(".list-staged");
-const boughtColaCont = document.querySelector(".list-myItems");
+const myPage = document.querySelector(".my-page");
+const myMoney = myPage.querySelector(".txt-money");
+const boughtColaCont = myPage.querySelector(".list-myItems");
 
+// 잔액을 소지금에 포함하기
 function getChange() {
   myMoney.textContent =
     parseInt(balance.innerText) + parseInt(myMoney.innerText) + " 원";
   balance.textContent = "0 원";
 }
 
+// 입금하기
 function deposit() {
   if (depositInput.value) {
     balance.textContent =
@@ -47,22 +51,34 @@ function deposit() {
 returnBtn.addEventListener("click", getChange);
 depositBtn.addEventListener("click", deposit);
 
+// 음료 장바구니에 담기
+let colaObj = {};
+
 drinkCont.forEach((item) => {
+  const colaName = item.children[0].children[1].innerText;
+  let selectedColaCount = document.createElement("span");
+
   item.addEventListener("click", () => {
-    const colaName = item.children[0].children[1].innerText;
     const selectedCola = document.createElement("li");
     const selectedColaImg = document.createElement("img");
     const selectedColaName = document.createElement("strong");
-    const selectedColaCount = document.createElement("span");
+    if (colaObj[colaName]) {
+      colaObj[colaName] += 1;
+      const updatedCount = colaObj[colaName];
+      selectedColaCount.innerText = updatedCount;
+    } else {
+      selectedColaImg.setAttribute("src", `./src/images/${colaName}.png`);
+      selectedColaName.innerText = colaName;
 
-    selectedColaImg.setAttribute("src", `./src/images/${colaName}.png`);
-    selectedColaName.innerText = colaName;
-    selectedColaCount.innerText = 1;
-    selectedCola.append(selectedColaImg);
-    selectedCola.append(selectedColaName);
-    selectedCola.append(selectedColaCount);
-    selectedColaCont.append(selectedCola);
+      selectedCola.append(selectedColaImg);
+      selectedCola.append(selectedColaName);
+      selectedCola.append(selectedColaCount);
+      selectedColaCont.append(selectedCola);
+      colaObj[colaName] = 1;
+      selectedColaCount.innerText = colaObj[colaName];
+    }
 
+    // 음료 구매하기
     getBtn.addEventListener("click", () => {
       let price = selectedColaCont.childElementCount * 1000;
       const totalPriceTxt = document.querySelector(".price-total");
@@ -72,10 +88,8 @@ drinkCont.forEach((item) => {
       } else {
         balance.innerText = parseInt(balance.innerText) - price + " 원";
         selectedCola.remove();
-        // price = 0;
 
         boughtColaCont.append(selectedCola);
-
         totalPriceTxt.textContent = boughtColaCont.childElementCount * 1000;
       }
     });
