@@ -16,7 +16,7 @@
 // [x] 획득한 음료의 총금액을 구해 하단에 표시
 
 // 5. 금액 단위 표시
-// [ ] 세 자리 단위로 콤마 생성
+// [x] 세 자리 단위로 콤마 생성
 
 const vendingMachine = document.querySelector(".vending-machine");
 const drinkCont = vendingMachine.querySelectorAll(".drink-list li");
@@ -34,16 +34,20 @@ const boughtColaCont = myPage.querySelector(".list-myItems");
 
 // 잔액을 소지금에 포함하기
 function getChange() {
-  myMoney.textContent =
-    parseInt(balance.innerText) + parseInt(myMoney.innerText) + " 원";
+  const formattedMoney = (
+    parseInt(balance.innerText) + parseInt(myMoney.innerText)
+  ).toLocaleString();
+  myMoney.textContent = formattedMoney + " 원";
   balance.textContent = "0 원";
 }
 
 // 입금하기
 function deposit() {
   if (depositInput.value) {
-    balance.textContent =
-      parseInt(balance.innerText) + parseInt(depositInput.value) + " 원";
+    const formattedMoney = (
+      parseInt(balance.innerText) + parseInt(depositInput.value)
+    ).toLocaleString();
+    balance.textContent = formattedMoney + " 원";
     depositInput.value = "";
   }
 }
@@ -82,15 +86,18 @@ drinkCont.forEach((item) => {
     getBtn.addEventListener("click", () => {
       let price = selectedColaCont.childElementCount * 1000;
       const totalPriceTxt = document.querySelector(".price-total");
+
       console.log(price);
       if (parseInt(balance.innerText) < price) {
         alert("잔액이 부족합니다.");
       } else {
+        const formattedMoney = (
+          boughtColaCont.childElementCount * 1000
+        ).toLocaleString();
         balance.innerText = parseInt(balance.innerText) - price + " 원";
         selectedCola.remove();
-
         boughtColaCont.append(selectedCola);
-        totalPriceTxt.textContent = boughtColaCont.childElementCount * 1000;
+        totalPriceTxt.textContent = formattedMoney;
       }
     });
   });
