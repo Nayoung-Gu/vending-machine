@@ -35,9 +35,7 @@ const boughtColaCont = myPage.querySelector(".list-myItems");
 // 잔액을 소지금에 포함하기
 function getChange() {
   myMoney.textContent =
-    parseInt(balance.innerText.slice(0, -2)) +
-    parseInt(myMoney.innerText) +
-    " 원";
+    parseInt(balance.innerText) + parseInt(myMoney.innerText) + " 원";
 
   balance.textContent = "0 원";
 }
@@ -60,19 +58,23 @@ depositBtn.addEventListener("click", deposit);
 
 // 음료 장바구니에 담기
 let colaObj = {};
+let itemCount = 0;
 
 drinkCont.forEach((item) => {
   const colaName = item.children[0].children[1].innerText;
   let selectedColaCount = document.createElement("span");
 
   item.addEventListener("click", () => {
+    itemCount++;
     const selectedCola = document.createElement("li");
     const selectedColaImg = document.createElement("img");
     const selectedColaName = document.createElement("strong");
+    // 이미 장바구니에 담겨있는 경우
     if (colaObj[colaName]) {
       colaObj[colaName] += 1;
       const updatedCount = colaObj[colaName];
       selectedColaCount.innerText = updatedCount;
+      // 장바구니에 아이템을 처음 담는 경우
     } else {
       selectedColaImg.setAttribute("src", `./src/images/${colaName}.png`);
       selectedColaName.innerText = colaName;
@@ -82,25 +84,33 @@ drinkCont.forEach((item) => {
       selectedCola.append(selectedColaCount);
       selectedColaCont.append(selectedCola);
       colaObj[colaName] = 1;
+
       selectedColaCount.innerText = colaObj[colaName];
     }
-
-    // 음료 구매하기
-    getBtn.addEventListener("click", () => {
-      let price = selectedColaCont.childElementCount * 1000;
-      const totalPriceTxt = document.querySelector(".price-total");
-
-      if (balance.innerText.slice(0, -2) < price) {
-        alert("잔액이 부족합니다.");
-      } else {
-        // const formattedMoney = (
-        //   boughtColaCont.childElementCount * 1000
-        // ).toLocaleString();
-        balance.innerText = boughtColaCont.childElementCount * 1000 + " 원";
-        selectedCola.remove();
-        boughtColaCont.append(selectedCola);
-        totalPriceTxt.textContent = boughtColaCont.childElementCount * 1000;
-      }
-    });
   });
+});
+
+// 음료 구매하기
+getBtn.addEventListener("click", () => {
+  let price = itemCount * 1000;
+  const totalPriceTxt = document.querySelector(".price-total");
+
+  // 잔액이 부족해 구매에 실패한 경우
+  if (balance.innerText.slice(0, -2) < price) {
+    alert("잔액이 부족합니다.");
+    // 성공적으로 구매한 경우
+  } else {
+    balance.innerText = parseInt(balance.innerText) - itemCount * 1000 + " 원";
+
+    console.log(`잔액 : ${parseInt(balance.innerText)}`);
+    console.log(`금액 : ${itemCount * 1000}`);
+    // selectedCola.remove();
+    boughtColaCont.innerHTML = selectedColaCont.innerHTML;
+
+    selectedColaCont.innerHTML = "";
+    colaObj = {};
+    // boughtColaCont.append(colaHTMLs);
+
+    totalPriceTxt.textContent = itemCount * 1000;
+  }
 });
