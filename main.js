@@ -6,7 +6,7 @@
 
 // 3. 음료 구매
 // [x] 3-1. 음료 버튼 누르면 카트로 이동
-// [ ] 3-2. 카트의 음료 버튼을 누르면 하나씩 수량 감소
+// [x] 3-2. 카트의 음료 버튼을 누르면 하나씩 수량 감소
 // [x] 3-3. 음료 종류당 하나의 li에 카운트 누적
 // [x] 3-4. '획득' 버튼 누르면 카트에 담긴 음료가 획득한 음료칸으로 이동
 // [x] 3-5. (실패) 카트에 담긴 금액이 잔액을 초과하면 alert
@@ -83,11 +83,33 @@ drinkCont.forEach((item) => {
       selectedCola.append(selectedColaName);
       selectedCola.append(selectedColaCount);
       selectedColaCont.append(selectedCola);
+      selectedColaImg.classList.add("selected");
+      selectedColaName.classList.add("selected");
+      selectedColaCount.classList.add("selected");
+      selectedCola.classList.add("selected");
+      selectedCola.classList.add(`${colaName}`);
+      for (let i = 0; i < selectedCola.children.length; i++) {
+        selectedCola.children[i].classList.add(`${colaName}`);
+      }
+      selectedCola.style.cursor = "pointer";
       colaObj[colaName] = 1;
 
       selectedColaCount.innerText = colaObj[colaName];
     }
   });
+});
+
+// 장바구니 아이템 클릭시 수량 감소
+selectedColaCont.addEventListener("click", (e) => {
+  if (e.target.classList.contains("selected")) {
+    const selectedCola = e.target.classList[1];
+    colaObj[selectedCola] -= 1;
+    selectedColaCont.children[0].children[2].innerText -= 1;
+
+    if (colaObj[selectedCola] === 0) {
+      selectedColaCont.children[0].remove();
+    }
+  }
 });
 
 // 음료 구매하기
@@ -97,6 +119,8 @@ getBtn.addEventListener("click", () => {
 
   // 잔액이 부족해 구매에 실패한 경우
   if (balance.innerText.slice(0, -2) < price) {
+    console.log(balance.innerText.slice(0, -2));
+    console.log(price);
     alert("잔액이 부족합니다.");
     // 성공적으로 구매한 경우
   } else {
@@ -106,10 +130,9 @@ getBtn.addEventListener("click", () => {
     console.log(`금액 : ${itemCount * 1000}`);
     // selectedCola.remove();
     boughtColaCont.innerHTML = selectedColaCont.innerHTML;
-
+    itemCount = 0;
     selectedColaCont.innerHTML = "";
     colaObj = {};
-    // boughtColaCont.append(colaHTMLs);
 
     totalPriceTxt.textContent = itemCount * 1000;
   }
