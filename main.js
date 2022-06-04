@@ -34,22 +34,23 @@ const boughtColaCont = myPage.querySelector(".list-myItems");
 
 // 잔액을 소지금에 포함하기
 function getChange() {
-  myMoney.textContent =
-    parseInt(balance.innerText) + parseInt(myMoney.innerText) + " 원";
+  if (window.confirm("거스름돈을 반환하시겠습니까?")) {
+    myMoney.textContent =
+      parseInt(balance.innerText) + parseInt(myMoney.innerText) + " 원";
 
-  balance.textContent = "0 원";
+    balance.textContent = "0 원";
+  }
 }
 
 // 입금하기
 function deposit() {
   if (depositInput.value) {
-    // const formattedMoney = Number(
-    //   parseInt(balance.innerText) + parseInt(depositInput.value)
-    // ).toLocaleString();
     balance.textContent =
       parseInt(balance.innerText) + parseInt(depositInput.value) + " 원";
 
     depositInput.value = "";
+  } else {
+    alert("입금하실 금액을 입력해 주세요.");
   }
 }
 
@@ -124,16 +125,18 @@ getBtn.addEventListener("click", () => {
     alert("잔액이 부족합니다.");
     // 성공적으로 구매한 경우
   } else {
-    balance.innerText = parseInt(balance.innerText) - itemCount * 1000 + " 원";
+    if (window.confirm("음료를 구매하시겠습니까?")) {
+      balance.innerText =
+        parseInt(balance.innerText) - itemCount * 1000 + " 원";
 
-    console.log(`잔액 : ${parseInt(balance.innerText)}`);
-    console.log(`금액 : ${itemCount * 1000}`);
-    // selectedCola.remove();
-    boughtColaCont.innerHTML = selectedColaCont.innerHTML;
-    itemCount = 0;
-    selectedColaCont.innerHTML = "";
-    colaObj = {};
+      console.log(`잔액 : ${parseInt(balance.innerText)}`);
+      console.log(`금액 : ${itemCount * 1000}`);
+      boughtColaCont.innerHTML = selectedColaCont.innerHTML;
+      itemCount = 0;
+      selectedColaCont.innerHTML = "";
+      colaObj = {};
 
-    totalPriceTxt.textContent = itemCount * 1000;
+      totalPriceTxt.textContent = itemCount * 1000;
+    }
   }
 });
